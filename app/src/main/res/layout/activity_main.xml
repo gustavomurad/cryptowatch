@@ -14,7 +14,8 @@
         android:gravity="center_vertical|center_horizontal"
         android:padding="10dp"
         android:text="@string/label_top_cryptocurrencies"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewCryptocurrency"

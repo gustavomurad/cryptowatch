@@ -16,7 +16,9 @@
             android:id="@+id/cryptoIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:scaleType="center" />
 
         <TextView
             android:id="@+id/tv_name"

@@ -16,6 +16,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     private var mLayoutInflater: LayoutInflater? = null
     private var mCryptocurrency: ArrayList<Cryptocurrency.Coin> = arrayListOf()
     private var mContext: Context
+    private var mUri: String = "@drawable/ic_%s"
 
     constructor(mContext: Context, data: ArrayList<Cryptocurrency.Coin>) {
         this.mLayoutInflater = LayoutInflater.from(mContext)
@@ -33,12 +34,12 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        var crypto: Cryptocurrency.Coin= mCryptocurrency[position]
+        val crypto: Cryptocurrency.Coin= mCryptocurrency[position]
         val formatMoney = NumberFormat.getCurrencyInstance(Locale.US)
 
         holder.icon.let {
             try {
-                val imageResource: Int = mContext.resources.getIdentifier("@drawable/ic_${crypto.symbol.toLowerCase()}", null, mContext.packageName )
+                val imageResource: Int = mContext.resources.getIdentifier(mUri.format(crypto.symbol.toLowerCase()), null, mContext.packageName )
                 val res = mContext.getDrawable(imageResource)
                 it.setImageDrawable(res)
             }catch (e: Exception){
@@ -50,16 +51,20 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
             val name = "${crypto.name} (${crypto.symbol})"
             it.text = name
         }
+
         holder.price.let {
             val price = "${mContext.getString(R.string.label_price)}: ${formatMoney.format(crypto.quotes["USD"]?.price)}"
             it.text = price
         }
+
         holder.percentChange1h.let {
             setPercentChange(crypto.quotes["USD"]?.percentChange1h ?: 0.0, it, mContext.getString(R.string.label_change_small_1h))
         }
+
         holder.percentChange24h.let {
             setPercentChange(crypto.quotes["USD"]?.percentChange24h ?: 0.0, it, mContext.getString(R.string.label_change_small_24h))
         }
+
         holder.percentChange7d.let {
             setPercentChange(crypto.quotes["USD"]?.percentChange7d ?: 0.0, it, mContext.getString(R.string.label_change_small_7d))
         }
@@ -71,13 +76,13 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     }
 
     private fun setPercentChange(percent: Double, textView: TextView, label: String) {
-        var arrow: String = ""
+        var arrow: String
         if (percent >= 0){
             textView.setTextColor(Color.BLACK)
-            arrow = "\uD83D\uDD3A"
+            arrow = "\u25B2"
         } else{
             textView.setTextColor(Color.RED)
-            arrow = "\uD83D\uDD3B"
+            arrow = "\u25BC"
         }
 
         val percentText = "$arrow ${String.format("%.02f%%", percent)} $label"
