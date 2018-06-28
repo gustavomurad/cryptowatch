@@ -12,7 +12,7 @@ import cz.msebera.android.httpclient.Header
 
 
 class MainActivity : AppCompatActivity() {
-    private val mUrl: String = "https://api.coinmarketcap.com/v2/ticker/?limit=20"
+    private val mUrl: String = "https://api.coinmarketcap.com/v2/ticker/?limit=50"
     private lateinit var adapter: CryptocurrencyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {

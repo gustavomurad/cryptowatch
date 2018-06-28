@@ -39,7 +39,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
         holder.icon.let {
             try {
                 val imageResource: Int = mContext.resources.getIdentifier("@drawable/ic_${crypto.symbol.toLowerCase()}", null, mContext.packageName )
-                val res = mContext.resources.getDrawable(imageResource)
+                val res = mContext.getDrawable(imageResource)
                 it.setImageDrawable(res)
             }catch (e: Exception){
             Log.e("Fail to load icon: ","ic_${crypto.symbol.toLowerCase()}" )
