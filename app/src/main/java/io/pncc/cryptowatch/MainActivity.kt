@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.TextHttpResponseHandler
 import cz.msebera.android.httpclient.Header
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,10 +22,17 @@ class MainActivity : AppCompatActivity() {
 
         val mRecyclerView: RecyclerView = findViewById(R.id.recyclerViewCryptocurrency)
 
-        val client = AsyncHttpClient()
+        getMarketCapData(mRecyclerView)
 
-        client.get(mUrl, object:TextHttpResponseHandler() {
-            override fun onSuccess(statusCode:Int, headers:Array<Header>, response:String) {
+        btn_refresh.setOnClickListener{
+            getMarketCapData(mRecyclerView)
+        }
+    }
+
+    private fun getMarketCapData(mRecyclerView: RecyclerView) {
+        val client = AsyncHttpClient()
+        client.get(mUrl, object : TextHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Array<Header>, response: String) {
 
                 val gson = GsonBuilder().create()
                 val crypto = gson.fromJson(response, Cryptocurrency::class.java)
