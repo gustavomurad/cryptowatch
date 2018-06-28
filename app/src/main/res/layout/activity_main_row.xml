@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:paddingTop="25px"
         android:orientation="horizontal">
 
         <ImageView
@@ -79,9 +80,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingBottom="25px"
         android:text="@string/label_price"
+        android:paddingBottom="15px"
         android:textAlignment="textStart" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 
 </LinearLayout>
