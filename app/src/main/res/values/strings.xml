@@ -3,6 +3,14 @@
     <string name="label_top_cryptocurrencies">Cryptocurrencies</string>
     <string name="label_name">Name</string>
     <string name="label_price">Price</string>
+
+    <string name="label_change_1h">Change (1h)</string>
     <string name="label_change_24h">Change (24h)</string>
+    <string name="label_change_7d">Change (7d)</string>
+
+    <string name="label_change_small_1h">(1h)</string>
+    <string name="label_change_small_24h">(24h)</string>
+    <string name="label_change_small_7d">(7d)</string>
+
     <string name="label_volume_24h">Volume (24h)</string>
 </resources>
