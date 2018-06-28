@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:layout_weight="20"
             android:text="@string/label_name"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -31,7 +32,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_change_24h"
+            android:id="@+id/tv_change_1h"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -42,7 +43,7 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/tv_change_1h"
+            android:id="@+id/tv_change_24h"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

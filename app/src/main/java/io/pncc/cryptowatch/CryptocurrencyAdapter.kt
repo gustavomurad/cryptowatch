@@ -37,20 +37,22 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
         val formatMoney = NumberFormat.getCurrencyInstance(Locale.US)
 
         holder.icon.let {
-            val imageResource: Int = mContext.resources.getIdentifier("@drawable/ic_${crypto.symbol.toLowerCase()}", null, mContext.packageName )
-            if (imageResource != 0){
+            try {
+                val imageResource: Int = mContext.resources.getIdentifier("@drawable/ic_${crypto.symbol.toLowerCase()}", null, mContext.packageName )
                 val res = mContext.resources.getDrawable(imageResource)
                 it.setImageDrawable(res)
-            }else{
-                Log.i("Fail to load icon: ","ic_${crypto.symbol.toLowerCase()}" )
+            }catch (e: Exception){
+            Log.e("Fail to load icon: ","ic_${crypto.symbol.toLowerCase()}" )
             }
         }
 
         holder.name.let {
-            it.text = "${crypto.name} (${crypto.symbol})"
+            val name = "${crypto.name} (${crypto.symbol})"
+            it.text = name
         }
         holder.price.let {
-            it.text = "${mContext.getString(R.string.label_price)}: ${formatMoney.format(crypto.quotes["USD"]?.price)}"
+            val price = "${mContext.getString(R.string.label_price)}: ${formatMoney.format(crypto.quotes["USD"]?.price)}"
+            it.text = price
         }
         holder.percentChange1h.let {
             setPercentChange(crypto.quotes["USD"]?.percentChange1h ?: 0.0, it, mContext.getString(R.string.label_change_small_1h))
@@ -63,7 +65,8 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
         }
 
         holder.volume24h.let {
-            it.text =  "${mContext.getString(R.string.label_volume_24h)}: ${formatMoney.format(crypto.quotes["USD"]?.volume24h)}"
+            val volume = "${mContext.getString(R.string.label_volume_24h)}: ${formatMoney.format(crypto.quotes["USD"]?.volume24h)}"
+            it.text = volume
         }
     }
 
@@ -77,7 +80,8 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
             arrow = "\uD83D\uDD3B"
         }
 
-        textView.text = "$arrow ${String.format("%.02f%%", percent)} $label"
+        val percentText = "$arrow ${String.format("%.02f%%", percent)} $label"
+        textView.text = percentText
     }
 
     inner class MyViewHolder: RecyclerView.ViewHolder {
