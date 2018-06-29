@@ -13,4 +13,5 @@
     <string name="label_change_small_7d">(7d)</string>
 
     <string name="label_volume_24h">Volume (24h)</string>
+    <string name="icon_coin">Coin</string>
 </resources>
