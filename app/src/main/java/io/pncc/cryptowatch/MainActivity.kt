@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         btn_refresh.setOnClickListener{
             getMarketCapData(mRecyclerView)
         }
+
+        cryptoSwipeRefresh.setOnRefreshListener {
+            getMarketCapData(mRecyclerView)
+        }
     }
 
     private fun getMarketCapData(mRecyclerView: RecyclerView) {
@@ -41,6 +45,8 @@ class MainActivity : AppCompatActivity() {
                 mRecyclerView.setHasFixedSize(true)
                 mRecyclerView.adapter = adapter
                 mRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+
+                cryptoSwipeRefresh.isRefreshing = false
 
                 Log.i("response: ", response)
             }

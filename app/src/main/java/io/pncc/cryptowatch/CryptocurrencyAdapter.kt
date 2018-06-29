@@ -78,10 +78,10 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     private fun setPercentChange(percent: Double, textView: TextView, label: String) {
         var arrow: String
         if (percent >= 0){
-            textView.setTextColor(Color.BLACK)
+            textView.setTextColor(mContext.getColor(R.color.abc_secondary_text_material_light))
             arrow = "\u25B2"
         } else{
-            textView.setTextColor(Color.RED)
+            textView.setTextColor(mContext.getColor(R.color.colorTextNegativeValue))
             arrow = "\u25BC"
         }
 
