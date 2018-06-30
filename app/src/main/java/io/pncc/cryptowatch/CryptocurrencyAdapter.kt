@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.*
 
@@ -43,9 +44,14 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
                 val res = mContext.getDrawable(imageResource)
                 it.setImageDrawable(res)
             }catch (e: Exception){
-            Log.e("Fail to load icon: ","ic_${crypto.symbol.toLowerCase()}" )
+            Log.e("Fail to load icon: ","ic_${crypto.symbol.toLowerCase()}.xml" )
             }
         }
+
+        holder.coinGraph.let{
+            Picasso.with(mContext).load(Constants.GRAPH_URI.format(crypto.id)).into(it)
+        }
+
 
         holder.name.let {
             val name = "${crypto.name} (${crypto.symbol})"
@@ -97,6 +103,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
         var percentChange7d: TextView
         var volume24h: TextView
         var icon: ImageView
+        var coinGraph: ImageView
 
         constructor(itemView: View) : super(itemView) {
             this.name = itemView.findViewById(R.id.tv_name)
@@ -106,6 +113,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
             this.percentChange7d = itemView.findViewById(R.id.tv_change_7d)
             this.volume24h = itemView.findViewById(R.id.tv_volume_24h)
             this.icon = itemView.findViewById(R.id.cryptoIcon)
+            this.coinGraph = itemView.findViewById(R.id.coinGraph)
         }
     }
 }
