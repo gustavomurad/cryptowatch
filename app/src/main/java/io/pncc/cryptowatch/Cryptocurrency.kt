@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 class Cryptocurrency: Serializable{
-    @SerializedName("data") var data: Map<Int,Coin>
+    @SerializedName("data") var data: ArrayList<Coin>
     @SerializedName("metadata") var metadata: Metadata
 
-    constructor(data: Map<Int,Coin>, metadata: Metadata) {
+    constructor(data: ArrayList<Coin>, metadata: Metadata) {
         this.data = data
         this.metadata = metadata
     }

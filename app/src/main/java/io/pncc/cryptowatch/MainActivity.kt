@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    private val mUrl: String = "https://api.coinmarketcap.com/v2/ticker/?limit=50"
+
     private lateinit var adapter: CryptocurrencyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +35,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun getMarketCapData(mRecyclerView: RecyclerView) {
         val client = AsyncHttpClient()
-        client.get(mUrl, object : TextHttpResponseHandler() {
+        client.get(Constants.API_URI, object : TextHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<Header>, response: String) {
 
                 val gson = GsonBuilder().create()
                 val crypto = gson.fromJson(response, Cryptocurrency::class.java)
 
-                adapter = CryptocurrencyAdapter(this@MainActivity, ArrayList(crypto.data.values))
+                adapter = CryptocurrencyAdapter(this@MainActivity, crypto.data)
                 mRecyclerView.setHasFixedSize(true)
                 mRecyclerView.adapter = adapter
                 mRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)

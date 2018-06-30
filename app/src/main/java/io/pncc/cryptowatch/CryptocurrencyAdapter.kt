@@ -16,7 +16,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     private var mLayoutInflater: LayoutInflater? = null
     private var mCryptocurrency: ArrayList<Cryptocurrency.Coin> = arrayListOf()
     private var mContext: Context
-    private var mUri: String = "@drawable/ic_%s"
+
 
     constructor(mContext: Context, data: ArrayList<Cryptocurrency.Coin>) {
         this.mLayoutInflater = LayoutInflater.from(mContext)
@@ -39,7 +39,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
 
         holder.icon.let {
             try {
-                val imageResource: Int = mContext.resources.getIdentifier(mUri.format(crypto.symbol.toLowerCase()), null, mContext.packageName )
+                val imageResource: Int = mContext.resources.getIdentifier(Constants.RESOURCE_URI.format(crypto.symbol.toLowerCase()), null, mContext.packageName )
                 val res = mContext.getDrawable(imageResource)
                 it.setImageDrawable(res)
             }catch (e: Exception){
