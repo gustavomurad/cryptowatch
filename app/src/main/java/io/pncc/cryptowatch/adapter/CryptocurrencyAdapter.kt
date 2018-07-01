@@ -1,7 +1,6 @@
-package io.pncc.cryptowatch
+package io.pncc.cryptowatch.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import io.pncc.cryptowatch.R
+import io.pncc.cryptowatch.constants.Constants
+import io.pncc.cryptowatch.model.Cryptocurrency
 import java.text.NumberFormat
 import java.util.*
 
@@ -82,13 +84,12 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     }
 
     private fun setPercentChange(percent: Double, textView: TextView, label: String) {
-        var arrow: String
-        if (percent >= 0){
+        val arrow = if (percent >= 0){
             textView.setTextColor(mContext.getColor(R.color.abc_secondary_text_material_light))
-            arrow = "\u25B2"
+            "\u25B2"
         } else{
             textView.setTextColor(mContext.getColor(R.color.colorTextNegativeValue))
-            arrow = "\u25BC"
+            "\u25BC"
         }
 
         val percentText = "$arrow ${String.format("%.02f%%", percent)} $label"

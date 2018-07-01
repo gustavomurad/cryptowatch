@@ -1,22 +1,9 @@
-package io.pncc.cryptowatch
+package io.pncc.cryptowatch.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Cryptocurrency: Serializable{
-    @SerializedName("data") var data: ArrayList<Coin>
-    @SerializedName("metadata") var metadata: Metadata
-
-    constructor(data: ArrayList<Coin>, metadata: Metadata) {
-        this.data = data
-        this.metadata = metadata
-    }
-
-    data class Metadata(
-            @SerializedName("timestamp") var timestamp: Int,
-            @SerializedName("num_cryptocurrencies") var numCryptocurrencies: Int,
-            @SerializedName("error") var error: Any
-    )
+class Cryptocurrency(@SerializedName("data") var data: ArrayList<Coin>): Serializable{
     data class Coin(
             @SerializedName("id") var id: Int,
             @SerializedName("name") var name: String,

@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch
+package io.pncc.cryptowatch.constants
 
 object Constants {
     const val RESOURCE_URI: String = "@drawable/ic_%s"

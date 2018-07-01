@@ -1,36 +1,42 @@
-package io.pncc.cryptowatch
+package io.pncc.cryptowatch.fragment
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.google.gson.GsonBuilder
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.TextHttpResponseHandler
 import cz.msebera.android.httpclient.Header
-import kotlinx.android.synthetic.main.activity_main.*
+import io.pncc.cryptowatch.R
+import io.pncc.cryptowatch.adapter.CryptocurrencyAdapter
+import io.pncc.cryptowatch.constants.Constants
+import io.pncc.cryptowatch.model.Cryptocurrency
+import kotlinx.android.synthetic.main.tab_market_fragment.*
 
-
-class MainActivity : AppCompatActivity() {
+class MarketFragment : Fragment(){
 
     private lateinit var adapter: CryptocurrencyAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.tab_market_fragment, container, false)
+    }
 
-        val mRecyclerView: RecyclerView = findViewById(R.id.recyclerViewCryptocurrency)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val mRecyclerView: RecyclerView = view.findViewById(R.id.recyclerViewCryptocurrency)
 
         getMarketCapData(mRecyclerView)
-
-        btn_refresh.setOnClickListener{
-            getMarketCapData(mRecyclerView)
-        }
 
         cryptoSwipeRefresh.setOnRefreshListener {
             getMarketCapData(mRecyclerView)
         }
+
     }
 
     private fun getMarketCapData(mRecyclerView: RecyclerView) {
@@ -41,10 +47,13 @@ class MainActivity : AppCompatActivity() {
                 val gson = GsonBuilder().create()
                 val crypto = gson.fromJson(response, Cryptocurrency::class.java)
 
-                adapter = CryptocurrencyAdapter(this@MainActivity, crypto.data)
+                context?.let {
+                    adapter = CryptocurrencyAdapter(it, crypto.data)
+                }
+
                 mRecyclerView.setHasFixedSize(true)
                 mRecyclerView.adapter = adapter
-                mRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+                mRecyclerView.layoutManager = LinearLayoutManager(context)
 
                 cryptoSwipeRefresh.isRefreshing = false
 
@@ -56,4 +65,5 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 }
