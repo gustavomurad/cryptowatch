@@ -14,4 +14,6 @@
 
     <string name="label_volume_24h">Volume (24h)</string>
     <string name="icon_coin">Coin</string>
+    <string name="label_market_tab" >Market</string>
+    <string name="label_holdings_tab">Holdings</string>
 </resources>
