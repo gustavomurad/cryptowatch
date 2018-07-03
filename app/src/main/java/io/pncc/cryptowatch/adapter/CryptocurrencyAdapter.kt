@@ -32,7 +32,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = mLayoutInflater!!.inflate(R.layout.activity_main_row, parent, false)
+        val view = mLayoutInflater!!.inflate(R.layout.tab_market_fragment_row, parent, false)
         return MyViewHolder(view)
     }
 
