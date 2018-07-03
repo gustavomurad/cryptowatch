@@ -11,11 +11,10 @@ import android.widget.TextView
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.constants.Constants
 import io.pncc.cryptowatch.model.Holdings
-import io.pncc.cryptowatch.model.Market
 import java.text.NumberFormat
 import java.util.*
 
-class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.MyViewHolder> {
+class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder> {
     private var mLayoutInflater: LayoutInflater? = null
     private var mMarket: ArrayList<Holdings> = arrayListOf()
     private var mContext: Context
@@ -31,12 +30,12 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.MyViewHolder> {
         return mMarket.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoldingsMyViewHolder {
         val view = mLayoutInflater!!.inflate(R.layout.tab_holdings_fragment_row, parent, false)
-        return MyViewHolder(view)
+        return HoldingsMyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HoldingsMyViewHolder, position: Int) {
         val crypto: Holdings= mMarket[position]
         val formatMoney = NumberFormat.getCurrencyInstance(Locale.US)
 
@@ -61,7 +60,7 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.MyViewHolder> {
         }
     }
 
-    inner class MyViewHolder: RecyclerView.ViewHolder {
+    inner class HoldingsMyViewHolder: RecyclerView.ViewHolder {
         var name:  TextView
         var price: TextView
         var icon: ImageView

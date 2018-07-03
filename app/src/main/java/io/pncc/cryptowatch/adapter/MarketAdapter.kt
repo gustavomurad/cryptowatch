@@ -15,7 +15,7 @@ import io.pncc.cryptowatch.model.Market
 import java.text.NumberFormat
 import java.util.*
 
-class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MyViewHolder> {
+class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MarketViewHolder> {
     private var mLayoutInflater: LayoutInflater? = null
     private var mMarket: ArrayList<Market.Coin> = arrayListOf()
     private var mContext: Context
@@ -31,12 +31,12 @@ class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MyViewHolder> {
         return mMarket.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketViewHolder {
         val view = mLayoutInflater!!.inflate(R.layout.tab_market_fragment_row, parent, false)
-        return MyViewHolder(view)
+        return MarketViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarketViewHolder, position: Int) {
         val crypto: Market.Coin= mMarket[position]
         val formatMoney = NumberFormat.getCurrencyInstance(Locale.US)
 
@@ -96,7 +96,7 @@ class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MyViewHolder> {
         textView.text = percentText
     }
 
-    inner class MyViewHolder: RecyclerView.ViewHolder {
+    inner class MarketViewHolder: RecyclerView.ViewHolder {
         var name:  TextView
         var price: TextView
         var percentChange1h:  TextView
