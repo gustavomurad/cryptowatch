@@ -16,4 +16,6 @@
     <string name="icon_coin">Coin</string>
     <string name="label_market_tab" >Market</string>
     <string name="label_holdings_tab">Holdings</string>
+    <string name="label_holdings">Holdings</string>
+    <string name="label_profit">Profit</string>
 </resources>

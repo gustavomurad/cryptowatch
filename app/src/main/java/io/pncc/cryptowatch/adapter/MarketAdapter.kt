@@ -11,24 +11,24 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.constants.Constants
-import io.pncc.cryptowatch.model.Cryptocurrency
+import io.pncc.cryptowatch.model.Market
 import java.text.NumberFormat
 import java.util.*
 
-class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHolder> {
+class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MyViewHolder> {
     private var mLayoutInflater: LayoutInflater? = null
-    private var mCryptocurrency: ArrayList<Cryptocurrency.Coin> = arrayListOf()
+    private var mMarket: ArrayList<Market.Coin> = arrayListOf()
     private var mContext: Context
 
 
-    constructor(mContext: Context, data: ArrayList<Cryptocurrency.Coin>) {
+    constructor(mContext: Context, data: ArrayList<Market.Coin>) {
         this.mLayoutInflater = LayoutInflater.from(mContext)
-        this.mCryptocurrency = data
+        this.mMarket = data
         this.mContext = mContext
     }
 
     override fun getItemCount(): Int {
-        return mCryptocurrency.size
+        return mMarket.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -37,7 +37,7 @@ class CryptocurrencyAdapter: RecyclerView.Adapter<CryptocurrencyAdapter.MyViewHo
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val crypto: Cryptocurrency.Coin= mCryptocurrency[position]
+        val crypto: Market.Coin= mMarket[position]
         val formatMoney = NumberFormat.getCurrencyInstance(Locale.US)
 
         holder.icon.let {

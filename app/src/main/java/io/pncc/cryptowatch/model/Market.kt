@@ -3,7 +3,7 @@ package io.pncc.cryptowatch.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Cryptocurrency(@SerializedName("data") var data: ArrayList<Coin>): Serializable{
+class Market(@SerializedName("data") var data: Map<Int, Coin>): Serializable{
     data class Coin(
             @SerializedName("id") var id: Int,
             @SerializedName("name") var name: String,

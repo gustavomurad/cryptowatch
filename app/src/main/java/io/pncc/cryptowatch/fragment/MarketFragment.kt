@@ -13,14 +13,13 @@ import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.TextHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import io.pncc.cryptowatch.R
-import io.pncc.cryptowatch.adapter.CryptocurrencyAdapter
+import io.pncc.cryptowatch.adapter.MarketAdapter
 import io.pncc.cryptowatch.constants.Constants
-import io.pncc.cryptowatch.model.Cryptocurrency
+import io.pncc.cryptowatch.model.Market
 import kotlinx.android.synthetic.main.tab_market_fragment.*
 
-class MarketFragment : Fragment(){
-
-    private lateinit var adapter: CryptocurrencyAdapter
+class MarketFragment : Fragment() {
+    private lateinit var adapter: MarketAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.tab_market_fragment, container, false)
@@ -29,14 +28,13 @@ class MarketFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mRecyclerView: RecyclerView = view.findViewById(R.id.recyclerViewCryptocurrency)
+        val mRecyclerView: RecyclerView = view.findViewById(R.id.recyclerViewMarket)
 
         getMarketCapData(mRecyclerView)
 
         cryptoSwipeRefresh.setOnRefreshListener {
             getMarketCapData(mRecyclerView)
         }
-
     }
 
     private fun getMarketCapData(mRecyclerView: RecyclerView) {
@@ -45,10 +43,10 @@ class MarketFragment : Fragment(){
             override fun onSuccess(statusCode: Int, headers: Array<Header>, response: String) {
 
                 val gson = GsonBuilder().create()
-                val crypto = gson.fromJson(response, Cryptocurrency::class.java)
+                val crypto = gson.fromJson(response, Market::class.java)
 
                 context?.let {
-                    adapter = CryptocurrencyAdapter(it, crypto.data)
+                    adapter = MarketAdapter(it, ArrayList(crypto.data.values))
                 }
 
                 mRecyclerView.setHasFixedSize(true)
@@ -65,5 +63,4 @@ class MarketFragment : Fragment(){
             }
         })
     }
-
 }
