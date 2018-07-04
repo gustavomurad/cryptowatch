@@ -1,5 +1,6 @@
 package io.pncc.cryptowatch.dao
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import io.pncc.cryptowatch.model.Holdings
 
@@ -14,6 +15,9 @@ interface HoldingsDao{
 
     @Delete
     fun delete(holdings: Holdings)
+
+    @Query("SELECT * FROM holdings ORDER BY id ASC")
+    fun getHoldings(): LiveData<List<Holdings>>
 
 
 }

@@ -26,6 +26,11 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder
         this.mContext = mContext
     }
 
+    fun setHoldings(holdings: ArrayList<Holdings>){
+        this.mMarket = holdings
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return mMarket.size
     }
