@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.adapter.HoldingsAdapter
 import io.pncc.cryptowatch.model.Holdings
+import java.sql.Date
 
 class HoldingsFragment : Fragment() {
     private lateinit var adapter: HoldingsAdapter
@@ -29,7 +30,7 @@ class HoldingsFragment : Fragment() {
     private fun getMarketCapData(mRecyclerView: RecyclerView) {
         var holdings: ArrayList<Holdings> = arrayListOf()
 
-        holdings.add(Holdings(1, "PNCC Coin", "BTC", 2500.01, 22.5))
+        holdings.add(Holdings(1, "PNCC Coin", "BTC", 2500.01, 22.5, 0.5, 1500.00, Date(1L)))
 
         context?.let {
             adapter = HoldingsAdapter(it, holdings)
