@@ -16,7 +16,7 @@ interface HoldingsDao{
     @Delete
     fun delete(holdings: Holdings)
 
-    @Query("SELECT * FROM holdings ORDER BY id ASC")
+    @Query("SELECT * FROM holdings")
     fun getHoldings(): LiveData<List<Holdings>>
 
 

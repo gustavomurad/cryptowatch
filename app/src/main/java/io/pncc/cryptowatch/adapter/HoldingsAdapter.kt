@@ -20,9 +20,8 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder
     private var mContext: Context
 
 
-    constructor(mContext: Context, data: ArrayList<Holdings>) {
+    constructor(mContext: Context) {
         this.mLayoutInflater = LayoutInflater.from(mContext)
-        this.mMarket = data
         this.mContext = mContext
     }
 

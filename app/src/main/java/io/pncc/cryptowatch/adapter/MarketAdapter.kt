@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.constants.Constants
 import io.pncc.cryptowatch.model.Market
@@ -51,7 +51,9 @@ class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MarketViewHolder> {
         }
 
         holder.coinGraph.let{
-            Picasso.with(mContext).load(Constants.GRAPH_URI.format(crypto.id)).into(it)
+            Glide.with(mContext)
+                    .load(Constants.GRAPH_URI.format(crypto.id))
+                    .into(it)
         }
 
 

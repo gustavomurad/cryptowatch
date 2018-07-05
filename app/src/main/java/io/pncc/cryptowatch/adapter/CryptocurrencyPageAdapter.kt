@@ -12,7 +12,7 @@ class CryptocurrencyPageAdapter(fm: FragmentManager?, private val tabCount: Int)
         return when(position){
             0 -> HoldingsFragment()
             1 -> MarketFragment()
-            else -> Fragment()
+            else -> throw IllegalArgumentException("Unknown position")
         }
     }
 

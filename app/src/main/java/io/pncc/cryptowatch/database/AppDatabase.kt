@@ -9,22 +9,22 @@ import io.pncc.cryptowatch.dao.HoldingsDao
 import io.pncc.cryptowatch.model.Holdings
 
 
-@Database(version = 1, entities = [Holdings::class])
-abstract class CryptocurrencyRoomDatabase : RoomDatabase() {
+@Database(entities = [Holdings::class], version = 1, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
+
     abstract fun holdingsDao(): HoldingsDao
 
     companion object {
-        @Volatile
-        private var instance: CryptocurrencyRoomDatabase? = null
+        @Volatile private var instance: AppDatabase? = null
 
-        fun getInstance(context: Context): CryptocurrencyRoomDatabase {
+        fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also { instance = it }
             }
         }
 
-        private fun buildDatabase(context: Context): CryptocurrencyRoomDatabase {
-            return Room.databaseBuilder(context, CryptocurrencyRoomDatabase::class.java, Constants.DATABASE_NAME).build()
+        private fun buildDatabase(context: Context): AppDatabase {
+            return Room.databaseBuilder(context, AppDatabase::class.java, Constants.DATABASE_NAME).build()
         }
     }
 }

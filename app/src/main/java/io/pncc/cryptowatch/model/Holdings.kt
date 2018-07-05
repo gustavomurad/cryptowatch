@@ -4,33 +4,17 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
-import java.sql.Date
 
 @Entity(tableName = "holdings")
 data class Holdings(
-
-        @PrimaryKey(autoGenerate = false)
-        @ColumnInfo(name = "id")
-        var id: Int,
-
-        @Ignore
-        var name: String,
-
-        @Ignore
-        var symbol: String,
-
-        @Ignore
-        var price: Double,
-
-        @Ignore
-        var percentChange: Double,
-
-        @ColumnInfo(name = "cryptoAmount")
+        @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id") var coinId: Int,
         var cryptoAmount: Double,
-
-        @ColumnInfo(name = "payedAmount")
         var payedAmount: Double,
+        var buyDate: String
+){
+    @Ignore var name: String = ""
+    @Ignore var symbol: String = ""
+    @Ignore var price: Double = 0.0
+    @Ignore var percentChange: Double = 0.0
 
-        @ColumnInfo(name = "buyDate")
-        var buyDate: Date
-)
+}

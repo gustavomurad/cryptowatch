@@ -1,32 +1,25 @@
 package io.pncc.cryptowatch.database
 
-import android.os.AsyncTask
-import android.arch.lifecycle.LiveData
-import android.app.Application
 import io.pncc.cryptowatch.dao.HoldingsDao
 import io.pncc.cryptowatch.model.Holdings
 
 
-class HoldingsRepository {
+class HoldingsRepository private constructor(private val holdingsDao: HoldingsDao){
 
-    private val mHoldingsDao: HoldingsDao
-    internal val allHoldings: LiveData<List<Holdings>>
+    fun getHoldings() = holdingsDao.getHoldings()
 
-    constructor(application: Application){
-        val db: CryptocurrencyRoomDatabase = CryptocurrencyRoomDatabase.getInstance(application)
-        mHoldingsDao = db.holdingsDao()
-        allHoldings = mHoldingsDao.getHoldings()
+    fun insert(holdings: Holdings){
+        holdingsDao.insert(holdings)
     }
 
-    fun insert(holdings: Holdings) {
-        InsertAsyncTask(mHoldingsDao).execute(holdings)
+    companion object {
+        // For Singleton instantiation
+        @Volatile private var instance: HoldingsRepository? = null
+
+        fun getInstance(holdingsDao: HoldingsDao) =
+                instance ?: synchronized(this) {
+                    instance ?: HoldingsRepository(holdingsDao).also { instance = it }
+                }
     }
 
-    private class InsertAsyncTask (private val mAsyncTaskDao: HoldingsDao) : AsyncTask<Holdings, Void, Void>() {
-
-        override fun doInBackground(vararg params: Holdings): Void? {
-            mAsyncTaskDao.insert(params[0])
-            return null
-        }
-    }
 }
