@@ -13,6 +13,7 @@ import io.pncc.cryptowatch.constants.Constants
 import io.pncc.cryptowatch.model.Holdings
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder> {
     private var mLayoutInflater: LayoutInflater? = null
@@ -25,8 +26,8 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder
         this.mContext = mContext
     }
 
-    fun setHoldings(holdings: ArrayList<Holdings>){
-        this.mMarket = holdings
+    fun setHoldings(holdings: List<Holdings>){
+        this.mMarket = ArrayList(holdings)
         notifyDataSetChanged()
     }
 

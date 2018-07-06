@@ -11,49 +11,51 @@ import android.view.View
 import android.view.ViewGroup
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.adapter.HoldingsAdapter
+import io.pncc.cryptowatch.database.AppDatabase
 import io.pncc.cryptowatch.model.Holdings
+import io.pncc.cryptowatch.utilities.InjectorUtils
+import io.pncc.cryptowatch.utilities.runOnIoThread
 import io.pncc.cryptowatch.viewmodels.HoldingsListViewModel
 
 class HoldingsFragment : Fragment() {
-    private lateinit var adapter: HoldingsAdapter
-    private var mHoldingsViewModel: HoldingsListViewModel? = null
+    private lateinit var mHoldingsViewModel: HoldingsListViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        mHoldingsViewModel = ViewModelProviders.of(this).get(HoldingsListViewModel::class.java!!)
+        val view = inflater.inflate(R.layout.tab_holdings_fragment, container, false)
+        val context = context ?: return view
+        val factory = InjectorUtils.provideHoldingsListViewModelFactory(context)
 
-        mHoldingsViewModel!!.getHoldings().observe(this, object: Observer<List<Holdings>> {
-            override fun onChanged(holdings: List<Holdings>?) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setHoldings(ArrayList(holdings))
-            }
+        mHoldingsViewModel = ViewModelProviders.of(this, factory).get(HoldingsListViewModel::class.java)
+
+        val adapter = HoldingsAdapter(context)
+        view.findViewById<RecyclerView>(R.id.recyclerViewHoldings).adapter = adapter
+        view.findViewById<RecyclerView>(R.id.recyclerViewHoldings).layoutManager = LinearLayoutManager(context)
+        subscribeUi(adapter)
+
+        return view
+    }
+
+    private fun subscribeUi(adapter: HoldingsAdapter) {
+        mHoldingsViewModel.getHoldings().observe(viewLifecycleOwner, Observer { holdings ->
+            if (holdings != null) adapter.setHoldings(holdings)
         })
-
-        return inflater.inflate(R.layout.tab_holdings_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mRecyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHoldings)
-
-        getMarketCapData(mRecyclerView)
+        getMarketCapData()
     }
 
-
-
-    private fun getMarketCapData(mRecyclerView: RecyclerView) {
-        var holdings: ArrayList<Holdings> = arrayListOf()
-
-        //holdings.add(Holdings(1, "PNCC Coin", "BTC", 2500.01, 22.5, 0.5, 1500.00, Date(1L)))
-
-        context?.let {
-            adapter = HoldingsAdapter(it)
+    private fun getMarketCapData() {
+        val db: AppDatabase = AppDatabase.getInstance(context!!)
+        runOnIoThread {
+            db.holdingsDao().insert(Holdings(1, 2500.01, 22.5, "13/04/1976"))
+            //db.holdingsDao().insert(Holdings(1, "PNCC Coin"))
         }
 
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.adapter = adapter
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
 
     }
+
 
 }
