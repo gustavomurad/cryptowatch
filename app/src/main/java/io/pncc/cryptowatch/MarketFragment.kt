@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch.fragment
+package io.pncc.cryptowatch
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,10 +12,9 @@ import com.google.gson.GsonBuilder
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.TextHttpResponseHandler
 import cz.msebera.android.httpclient.Header
-import io.pncc.cryptowatch.R
-import io.pncc.cryptowatch.adapter.MarketAdapter
+import io.pncc.cryptowatch.adapters.MarketAdapter
 import io.pncc.cryptowatch.constants.Constants
-import io.pncc.cryptowatch.model.Market
+import io.pncc.cryptowatch.database.Market
 import kotlinx.android.synthetic.main.tab_market_fragment.*
 
 class MarketFragment : Fragment() {

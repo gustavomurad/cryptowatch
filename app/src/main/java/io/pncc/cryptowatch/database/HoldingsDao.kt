@@ -1,8 +1,7 @@
-package io.pncc.cryptowatch.dao
+package io.pncc.cryptowatch.database
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
-import io.pncc.cryptowatch.model.Holdings
 
 @Dao
 interface HoldingsDao{

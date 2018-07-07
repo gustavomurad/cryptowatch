@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch.adapter
+package io.pncc.cryptowatch.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.constants.Constants
-import io.pncc.cryptowatch.model.Market
+import io.pncc.cryptowatch.database.Market
 import java.text.NumberFormat
 import java.util.*
 

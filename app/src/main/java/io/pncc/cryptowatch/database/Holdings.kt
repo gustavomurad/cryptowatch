@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch.model
+package io.pncc.cryptowatch.database
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity

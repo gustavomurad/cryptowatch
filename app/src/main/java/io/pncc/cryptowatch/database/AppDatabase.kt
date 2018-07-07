@@ -5,8 +5,6 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import io.pncc.cryptowatch.constants.Constants
-import io.pncc.cryptowatch.dao.HoldingsDao
-import io.pncc.cryptowatch.model.Holdings
 
 
 @Database(entities = [Holdings::class], version = 1, exportSchema = false)

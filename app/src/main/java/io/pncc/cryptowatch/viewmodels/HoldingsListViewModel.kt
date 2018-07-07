@@ -3,7 +3,7 @@ package io.pncc.cryptowatch.viewmodels
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.ViewModel
 import io.pncc.cryptowatch.database.HoldingsRepository
-import io.pncc.cryptowatch.model.Holdings
+import io.pncc.cryptowatch.database.Holdings
 
 class HoldingsListViewModel internal constructor(
         private val holdingsRepository: HoldingsRepository

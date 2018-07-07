@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch.adapter
+package io.pncc.cryptowatch.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.constants.Constants
-import io.pncc.cryptowatch.model.Holdings
+import io.pncc.cryptowatch.database.Holdings
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -41,7 +41,7 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder
     }
 
     override fun onBindViewHolder(holder: HoldingsMyViewHolder, position: Int) {
-        val crypto: Holdings= mMarket[position]
+        val crypto: Holdings = mMarket[position]
         val formatMoney = NumberFormat.getCurrencyInstance(Locale.US)
 
         holder.icon.let {

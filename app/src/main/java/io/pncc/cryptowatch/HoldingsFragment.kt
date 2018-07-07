@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch.fragment
+package io.pncc.cryptowatch
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -9,10 +9,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.pncc.cryptowatch.R
-import io.pncc.cryptowatch.adapter.HoldingsAdapter
+import io.pncc.cryptowatch.adapters.HoldingsAdapter
 import io.pncc.cryptowatch.database.AppDatabase
-import io.pncc.cryptowatch.model.Holdings
+import io.pncc.cryptowatch.database.Holdings
 import io.pncc.cryptowatch.utilities.InjectorUtils
 import io.pncc.cryptowatch.utilities.runOnIoThread
 import io.pncc.cryptowatch.viewmodels.HoldingsListViewModel
