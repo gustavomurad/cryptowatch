@@ -15,16 +15,9 @@ import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder> {
-    private var mLayoutInflater: LayoutInflater? = null
+class HoldingsAdapter(private val mContext: Context): RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder>() {
+    private var mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
     private var mMarket: ArrayList<Holdings> = arrayListOf()
-    private var mContext: Context
-
-
-    constructor(mContext: Context) {
-        this.mLayoutInflater = LayoutInflater.from(mContext)
-        this.mContext = mContext
-    }
 
     fun setHoldings(holdings: List<Holdings>){
         this.mMarket = ArrayList(holdings)
@@ -36,7 +29,7 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoldingsMyViewHolder {
-        val view = mLayoutInflater!!.inflate(R.layout.tab_holdings_fragment_row, parent, false)
+        val view = mLayoutInflater.inflate(R.layout.tab_holdings_fragment_row, parent, false)
         return HoldingsMyViewHolder(view)
     }
 
@@ -65,16 +58,9 @@ class HoldingsAdapter: RecyclerView.Adapter<HoldingsAdapter.HoldingsMyViewHolder
         }
     }
 
-    inner class HoldingsMyViewHolder: RecyclerView.ViewHolder {
-        var name:  TextView
-        var price: TextView
-        var icon: ImageView
-
-        constructor(itemView: View) : super(itemView) {
-            this.icon = itemView.findViewById(R.id.coinIcon)
-            this.name = itemView.findViewById(R.id.coinName)
-            this.price = itemView.findViewById(R.id.price)
-
-        }
+    inner class HoldingsMyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        var name:  TextView = itemView.findViewById(R.id.coinName)
+        var price: TextView = itemView.findViewById(R.id.price)
+        var icon: ImageView = itemView.findViewById(R.id.coinIcon)
     }
 }
