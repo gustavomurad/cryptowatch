@@ -3,6 +3,7 @@ package io.pncc.cryptowatch
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,6 +16,7 @@ import io.pncc.cryptowatch.database.Holdings
 import io.pncc.cryptowatch.utilities.InjectorUtils
 import io.pncc.cryptowatch.utilities.runOnIoThread
 import io.pncc.cryptowatch.viewmodels.HoldingsListViewModel
+import kotlinx.android.synthetic.main.tab_holdings_fragment.*
 
 class HoldingsFragment : Fragment() {
     private lateinit var mHoldingsViewModel: HoldingsListViewModel
@@ -30,6 +32,15 @@ class HoldingsFragment : Fragment() {
         view.findViewById<RecyclerView>(R.id.recyclerViewHoldings).adapter = adapter
         view.findViewById<RecyclerView>(R.id.recyclerViewHoldings).layoutManager = LinearLayoutManager(context)
         subscribeUi(adapter)
+
+        view.findViewById<FloatingActionButton>(R.id.floatingActionButton).setOnClickListener {
+            val db: AppDatabase = AppDatabase.getInstance(context)
+            runOnIoThread {
+                db.holdingsDao().insert(Holdings(2, 2500.01, 22.5, "13/04/1976"))
+                //db.holdingsDao().insert(Holdings(1, "PNCC Coin"))
+            }
+
+        }
 
         return view
     }
