@@ -16,7 +16,6 @@ import io.pncc.cryptowatch.database.Holdings
 import io.pncc.cryptowatch.utilities.InjectorUtils
 import io.pncc.cryptowatch.utilities.runOnIoThread
 import io.pncc.cryptowatch.viewmodels.HoldingsListViewModel
-import kotlinx.android.synthetic.main.tab_holdings_fragment.*
 
 class HoldingsFragment : Fragment() {
     private lateinit var mHoldingsViewModel: HoldingsListViewModel
