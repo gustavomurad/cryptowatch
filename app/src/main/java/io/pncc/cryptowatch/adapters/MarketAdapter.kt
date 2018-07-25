@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch.adapter
+package io.pncc.cryptowatch.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -11,28 +11,27 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.constants.Constants
-import io.pncc.cryptowatch.model.Market
+import io.pncc.cryptowatch.database.Holdings
+import io.pncc.cryptowatch.database.Market
 import java.text.NumberFormat
 import java.util.*
 
-class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MarketViewHolder> {
-    private var mLayoutInflater: LayoutInflater? = null
+class MarketAdapter(private var mContext: Context): RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {
+    private var mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
     private var mMarket: ArrayList<Market.Coin> = arrayListOf()
-    private var mContext: Context
-
-
-    constructor(mContext: Context, data: ArrayList<Market.Coin>) {
-        this.mLayoutInflater = LayoutInflater.from(mContext)
-        this.mMarket = data
-        this.mContext = mContext
-    }
 
     override fun getItemCount(): Int {
         return mMarket.size
     }
 
+    fun setMarkets(market: Market){
+        this.mMarket = ArrayList(market.data.values)
+        notifyDataSetChanged()
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketViewHolder {
-        val view = mLayoutInflater!!.inflate(R.layout.tab_market_fragment_row, parent, false)
+        val view = mLayoutInflater.inflate(R.layout.tab_market_fragment_row, parent, false)
         return MarketViewHolder(view)
     }
 
@@ -87,7 +86,7 @@ class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MarketViewHolder> {
 
     private fun setPercentChange(percent: Double, textView: TextView, label: String) {
         val arrow = if (percent >= 0){
-            textView.setTextColor(mContext.getColor(R.color.abc_secondary_text_material_light))
+            textView.setTextColor(mContext.getColor(R.color.secondaryTextColor))
             "\u25B2"
         } else{
             textView.setTextColor(mContext.getColor(R.color.colorTextNegativeValue))
@@ -98,25 +97,14 @@ class MarketAdapter: RecyclerView.Adapter<MarketAdapter.MarketViewHolder> {
         textView.text = percentText
     }
 
-    inner class MarketViewHolder: RecyclerView.ViewHolder {
-        var name:  TextView
-        var price: TextView
-        var percentChange1h:  TextView
-        var percentChange24h: TextView
-        var percentChange7d: TextView
-        var volume24h: TextView
-        var icon: ImageView
-        var coinGraph: ImageView
-
-        constructor(itemView: View) : super(itemView) {
-            this.name = itemView.findViewById(R.id.tv_name)
-            this.price = itemView.findViewById(R.id.tv_price)
-            this.percentChange1h = itemView.findViewById(R.id.tv_change_1h)
-            this.percentChange24h = itemView.findViewById(R.id.tv_change_24h)
-            this.percentChange7d = itemView.findViewById(R.id.tv_change_7d)
-            this.volume24h = itemView.findViewById(R.id.tv_volume_24h)
-            this.icon = itemView.findViewById(R.id.cryptoIcon)
-            this.coinGraph = itemView.findViewById(R.id.coinGraph)
-        }
+    inner class MarketViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        var name: TextView = itemView.findViewById(R.id.tv_name)
+        var price: TextView = itemView.findViewById(R.id.tv_price)
+        var percentChange1h: TextView = itemView.findViewById(R.id.tv_change_1h)
+        var percentChange24h: TextView = itemView.findViewById(R.id.tv_change_24h)
+        var percentChange7d: TextView = itemView.findViewById(R.id.tv_change_7d)
+        var volume24h: TextView = itemView.findViewById(R.id.tv_volume_24h)
+        var icon: ImageView = itemView.findViewById(R.id.cryptoIcon)
+        var coinGraph: ImageView = itemView.findViewById(R.id.coinGraph)
     }
 }

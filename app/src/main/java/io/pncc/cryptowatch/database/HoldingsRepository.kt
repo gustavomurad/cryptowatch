@@ -1,7 +1,5 @@
 package io.pncc.cryptowatch.database
 
-import io.pncc.cryptowatch.dao.HoldingsDao
-
 
 class HoldingsRepository private constructor(
         private val holdingsDao: HoldingsDao

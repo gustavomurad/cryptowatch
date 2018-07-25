@@ -1,12 +1,11 @@
-package io.pncc.cryptowatch.activity
+package io.pncc.cryptowatch
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.facebook.stetho.Stetho
-import io.pncc.cryptowatch.R
-import io.pncc.cryptowatch.adapter.CryptocurrencyPageAdapter
+import io.pncc.cryptowatch.adapters.CryptocurrencyPageAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mTabLayout: TabLayout

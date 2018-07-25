@@ -1,10 +1,10 @@
-package io.pncc.cryptowatch.adapter
+package io.pncc.cryptowatch.adapters
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import io.pncc.cryptowatch.fragment.HoldingsFragment
-import io.pncc.cryptowatch.fragment.MarketFragment
+import io.pncc.cryptowatch.HoldingsFragment
+import io.pncc.cryptowatch.MarketFragment
 
 class CryptocurrencyPageAdapter(fm: FragmentManager?, private val tabCount: Int) : FragmentPagerAdapter(fm) {
 

@@ -1,4 +1,4 @@
-package io.pncc.cryptowatch.model
+package io.pncc.cryptowatch.database
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
