@@ -11,20 +11,24 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import io.pncc.cryptowatch.R
 import io.pncc.cryptowatch.constants.Constants
+import io.pncc.cryptowatch.database.Holdings
 import io.pncc.cryptowatch.database.Market
 import java.text.NumberFormat
 import java.util.*
 
-class MarketAdapter(
-        private var mContext: Context,
-        private var mMarket: ArrayList<Market.Coin>
-): RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {
-
+class MarketAdapter(private var mContext: Context): RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {
     private var mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
+    private var mMarket: ArrayList<Market.Coin> = arrayListOf()
 
     override fun getItemCount(): Int {
         return mMarket.size
     }
+
+    fun setMarkets(market: Market){
+        this.mMarket = ArrayList(market.data.values)
+        notifyDataSetChanged()
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketViewHolder {
         val view = mLayoutInflater.inflate(R.layout.tab_market_fragment_row, parent, false)
