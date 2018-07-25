@@ -27,6 +27,9 @@ buildscript {
         asynchttpVersion = '1.4.9'
         stethoVersion = '1.5.0'
         stethoRhinoVersion = '1.4.2'
+        retrofitVersion = '2.4.0'
+        gsonVersion = '2.8.5'
+        converterGsonVersion = '2.3.0'
     }
 
     repositories {
