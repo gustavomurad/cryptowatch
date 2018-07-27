@@ -18,4 +18,5 @@
     <string name="label_holdings_tab">Holdings</string>
     <string name="label_holdings">Holdings</string>
     <string name="label_profit">Profit</string>
+    <string name="graph_image">Coin Graphic</string>
 </resources>
