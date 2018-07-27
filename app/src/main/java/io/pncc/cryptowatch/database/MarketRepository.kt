@@ -1,7 +1,7 @@
 package io.pncc.cryptowatch.database
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import io.pncc.cryptowatch.constants.Constants
 import io.pncc.cryptowatch.service.MarketService
 import retrofit2.Call
