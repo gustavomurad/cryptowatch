@@ -1,73 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
-    android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="4dp"
     android:layout_weight="1"
     app:cardBackgroundColor="@android:color/background_light"
     app:cardCornerRadius="5dp"
     app:cardElevation="2dp"
     app:contentPadding="10dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/coinIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/icon_coin"
+            android:scaleType="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/coinName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_name"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/coinIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profit"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_profit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coinName" />
 
-            <ImageView
-                android:id="@+id/coinIcon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:adjustViewBounds="false"
-                android:contentDescription="@string/icon_coin"
-                android:scaleType="center" />
-
-            <TextView
-                android:id="@+id/coinName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:text="@string/label_name"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/price"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_price"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profit" />
 
-            <TextView
-                android:id="@+id/profit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_profit" />
+        <TextView
+            android:id="@+id/holdings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/label_holdings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price" />
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_price"
-                android:textAlignment="textStart" />
-
-            <TextView
-                android:id="@+id/holdings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_holdings" />
-
-        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </LinearLayout>
 </androidx.cardview.widget.CardView>
