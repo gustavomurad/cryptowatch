@@ -29,6 +29,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
 

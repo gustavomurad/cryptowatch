@@ -11,11 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.pncc.cryptowatch.adapters.HoldingsAdapter
-import io.pncc.cryptowatch.database.AppDatabase
-import io.pncc.cryptowatch.database.Holdings
 import io.pncc.cryptowatch.utilities.InjectorUtils
-import io.pncc.cryptowatch.utilities.runOnIoThread
 import io.pncc.cryptowatch.viewmodels.HoldingsListViewModel
+import android.content.Intent
+
+
 
 class HoldingsFragment : Fragment() {
     private lateinit var mHoldingsViewModel: HoldingsListViewModel
@@ -33,12 +33,8 @@ class HoldingsFragment : Fragment() {
         subscribeUi(adapter)
 
         view.findViewById<FloatingActionButton>(R.id.floatingActionButton).setOnClickListener {
-            val db: AppDatabase = AppDatabase.getInstance(context)
-            runOnIoThread {
-                db.holdingsDao().insert(Holdings(2, 2500.01, 22.5, "13/04/1976"))
-                //db.holdingsDao().insert(Holdings(1, "PNCC Coin"))
-            }
-
+            val intent = Intent(activity, HoldingsAddFragment::class.java)
+            startActivity(intent)
         }
 
         return view
@@ -49,22 +45,4 @@ class HoldingsFragment : Fragment() {
             if (holdings != null) adapter.setHoldings(holdings)
         })
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        getMarketCapData()
-    }
-
-    private fun getMarketCapData() {
-        val db: AppDatabase = AppDatabase.getInstance(context!!)
-        runOnIoThread {
-            db.holdingsDao().insert(Holdings(1, 2500.01, 22.5, "13/04/1976"))
-            //db.holdingsDao().insert(Holdings(1, "PNCC Coin"))
-        }
-
-
-    }
-
-
 }

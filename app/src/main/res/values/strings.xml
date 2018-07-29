@@ -14,9 +14,15 @@
 
     <string name="label_volume_24h">Volume (24h)</string>
     <string name="icon_coin">Coin</string>
-    <string name="label_market_tab" >Market</string>
+    <string name="label_market_tab">Market</string>
     <string name="label_holdings_tab">Holdings</string>
     <string name="label_holdings">Holdings</string>
     <string name="label_profit">Profit</string>
     <string name="graph_image">Coin Graphic</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="hint_criptocurrency">Cryptocurrency</string>
+    <string name="hint_buy_date">Buy date</string>
+    <string name="hint_buy_price">Buy price</string>
+    <string name="hint_amount_bought">Amount bought</string>
 </resources>

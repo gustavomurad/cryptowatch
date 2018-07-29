@@ -36,7 +36,8 @@ class MarketAdapter(private var mContext: Context): RecyclerView.Adapter<MarketA
     }
 
     override fun onBindViewHolder(holder: MarketViewHolder, position: Int) {
-        val crypto: Market.Coin= mMarket[position]
+        val crypto: Market.Coin = mMarket[position]
+        val quote: Market.Quotes = crypto.quotes.values.elementAt(0)
         val formatMoney = NumberFormat.getCurrencyInstance(Locale.US)
 
         holder.icon.let {
@@ -62,24 +63,24 @@ class MarketAdapter(private var mContext: Context): RecyclerView.Adapter<MarketA
         }
 
         holder.price.let {
-            val price = "${mContext.getString(R.string.label_price)}: ${formatMoney.format(crypto.quotes["USD"]?.price)}"
+            val price = "${mContext.getString(R.string.label_price)}: ${formatMoney.format(quote.price)}"
             it.text = price
         }
 
         holder.percentChange1h.let {
-            setPercentChange(crypto.quotes["USD"]?.percentChange1h ?: 0.0, it, mContext.getString(R.string.label_change_small_1h))
+            setPercentChange(quote.percentChange1h ?: 0.0, it, mContext.getString(R.string.label_change_small_1h))
         }
 
         holder.percentChange24h.let {
-            setPercentChange(crypto.quotes["USD"]?.percentChange24h ?: 0.0, it, mContext.getString(R.string.label_change_small_24h))
+            setPercentChange(quote.percentChange24h ?: 0.0, it, mContext.getString(R.string.label_change_small_24h))
         }
 
         holder.percentChange7d.let {
-            setPercentChange(crypto.quotes["USD"]?.percentChange7d ?: 0.0, it, mContext.getString(R.string.label_change_small_7d))
+            setPercentChange(quote.percentChange7d ?: 0.0, it, mContext.getString(R.string.label_change_small_7d))
         }
 
         holder.volume24h.let {
-            val volume = "${mContext.getString(R.string.label_volume_24h)}: ${formatMoney.format(crypto.quotes["USD"]?.volume24h)}"
+            val volume = "${mContext.getString(R.string.label_volume_24h)}: ${formatMoney.format(quote.volume24h)}"
             it.text = volume
         }
     }
