@@ -14,7 +14,6 @@ import io.pncc.cryptowatch.database.Holdings
 import io.pncc.cryptowatch.utilities.InjectorUtils
 import io.pncc.cryptowatch.utilities.runOnIoThread
 import io.pncc.cryptowatch.viewmodels.MarketListViewModel
-import java.lang.Double
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,7 +45,6 @@ class HoldingsAddFragment: AppCompatActivity(){
 
 
         val date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            // TODO Auto-generated method stub
             myCalendar.set(Calendar.YEAR, year)
             myCalendar.set(Calendar.MONTH, monthOfYear)
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -72,8 +70,8 @@ class HoldingsAddFragment: AppCompatActivity(){
         }
 
         mHoldingAddSave.setOnClickListener {
-            val amount = java.lang.Double.parseDouble(mHoldingsAddAmountBought.text.toString())
-            val price = Double.parseDouble(mHoldingsAddBuyPrice.text.toString())
+            val amount = mHoldingsAddAmountBought.text.toString().toDouble()
+            val price = mHoldingsAddBuyPrice.text.toString().toDouble()
             val db: AppDatabase = AppDatabase.getInstance(context)
             runOnIoThread {
                 db.holdingsDao().insert(Holdings(2, amount, price, mHoldingsAddBuyDate.text.toString()))
@@ -86,6 +84,6 @@ class HoldingsAddFragment: AppCompatActivity(){
         val myFormat = "MM/dd/yyyy" //In which you need put here
         val sdf = SimpleDateFormat(myFormat, Locale.US)
 
-        mHoldingsAddBuyDate.setText(sdf.format(myCalendar.getTime()))
+        mHoldingsAddBuyDate.text = sdf.format(myCalendar.time)
     }
 }
